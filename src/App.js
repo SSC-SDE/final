@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+// const average = (arr) =>
+//   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 const KEY = "f84fc31d";
 
@@ -449,10 +449,42 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   );
 }
 
+// function WatchedSummary({ watched }) {
+//   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+//   const avgUserRating = average(watched.map((movie) => movie.userRating));
+//   const avgRuntime = average(watched.map((movie) => movie.runtime));
+
+//   return (
+//     <div className="summary">
+//       <h2>Movies you watched</h2>
+//       <div>
+//         <p>
+//           <span>#️⃣</span>
+//           <span>{watched.length} movies</span>
+//         </p>
+//         <p>
+//           <span>⭐️</span>
+//           <span>{avgImdbRating.toFixed(2)}</span>
+//         </p>
+//         <p>
+//           <span>🌟</span>
+//           <span>{avgUserRating.toFixed(2)}</span>
+//         </p>
+//         <p>
+//           <span>⏳</span>
+//           <span>{avgRuntime} min</span>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
+
 function WatchedSummary({ watched }) {
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  const validMovies = watched.filter(movie => movie.imdbRating != null && movie.userRating != null && movie.runtime != null);
+
+  const avgImdbRating = average(validMovies.map((movie) => movie.imdbRating));
+  const avgUserRating = average(validMovies.map((movie) => movie.userRating));
+  const avgRuntime = average(validMovies.map((movie) => movie.runtime));
 
   return (
     <div className="summary">
@@ -464,20 +496,28 @@ function WatchedSummary({ watched }) {
         </p>
         <p>
           <span>⭐️</span>
-          <span>{avgImdbRating.toFixed(2)}</span>
+          <span>{avgImdbRating ? avgImdbRating.toFixed(2) : 'N/A'}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{avgUserRating.toFixed(2)}</span>
+          <span>{avgUserRating ? avgUserRating.toFixed(2) : 'N/A'}</span>
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime} min</span>
+          <span>{avgRuntime ? avgRuntime.toFixed(2) : 'N/A'} min</span>
         </p>
       </div>
     </div>
   );
 }
+
+function average(numbers) {
+  if (numbers.length === 0) return null;
+  const total = numbers.reduce((acc, num) => acc + num, 0);
+  return total / numbers.length;
+}
+
+
 
 function WatchedMoviesList({ watched, onDeleteWatched }) {
   return (
