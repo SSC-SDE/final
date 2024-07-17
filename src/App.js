@@ -480,7 +480,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 // }
 
 function WatchedSummary({ watched }) {
-  const validMovies = watched.filter(movie => movie.imdbRating != null && movie.userRating != null && movie.runtime != null);
+  const validMovies = watched.filter(movie =>
+    movie.imdbRating !== null && movie.userRating !== null && movie.runtime !== null
+  );
 
   const avgImdbRating = average(validMovies.map((movie) => movie.imdbRating));
   const avgUserRating = average(validMovies.map((movie) => movie.userRating));
@@ -496,15 +498,15 @@ function WatchedSummary({ watched }) {
         </p>
         <p>
           <span>⭐️</span>
-          <span>{avgImdbRating ? avgImdbRating.toFixed(2) : 'N/A'}</span>
+          <span>{avgImdbRating !== null ? avgImdbRating.toFixed(2) : 'N/A'}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{avgUserRating ? avgUserRating.toFixed(2) : 'N/A'}</span>
+          <span>{avgUserRating !== null ? avgUserRating.toFixed(2) : 'N/A'}</span>
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime ? avgRuntime.toFixed(2) : 'N/A'} min</span>
+          <span>{avgRuntime !== null ? avgRuntime.toFixed(2) : 'N/A'} min</span>
         </p>
       </div>
     </div>
@@ -512,7 +514,7 @@ function WatchedSummary({ watched }) {
 }
 
 function average(numbers) {
-  if (numbers.length === 0) return null;
+  if (numbers.length === 0 || numbers.some(num => num === null)) return null;
   const total = numbers.reduce((acc, num) => acc + num, 0);
   return total / numbers.length;
 }
