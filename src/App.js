@@ -528,10 +528,15 @@ function average(numbers) {
 
 
 function WatchedMoviesList({ watched, onDeleteWatched }) {
+  if (!Array.isArray(watched)) {
+    console.error("Expected 'watched' to be an array, but got:", watched);
+    return null;
+  }
+
   return (
     <ul className="list">
       {watched
-        .filter((movie) => movie != null)
+        .filter((movie) => movie && movie.imdbID) // Filter out null/undefined movies and movies without an imdbID
         .map((movie) => (
           <WatchedMovie
             movie={movie}
