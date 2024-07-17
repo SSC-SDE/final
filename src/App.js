@@ -526,16 +526,19 @@ function average(numbers) {
 
 
 
+
 function WatchedMoviesList({ watched, onDeleteWatched }) {
   return (
     <ul className="list">
-      {watched.map((movie) => (
-        <WatchedMovie
-          movie={movie}
-          key={movie.imdbID}
-          onDeleteWatched={onDeleteWatched}
-        />
-      ))}
+      {watched
+        .filter((movie) => movie != null)
+        .map((movie) => (
+          <WatchedMovie
+            movie={movie}
+            key={movie.imdbID}
+            onDeleteWatched={onDeleteWatched}
+          />
+        ))}
     </ul>
   );
 }
