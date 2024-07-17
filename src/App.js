@@ -4,7 +4,7 @@ import StarRating from "./StarRating";
 // const average = (arr) =>
 //   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-const KEY = "f84fc31d";
+const KEY = "69c6dd20";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -54,7 +54,7 @@ export default function App() {
           setError("");
 
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
           );
 
@@ -366,7 +366,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+          `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&i=${selectedId}`
         );
         const data = await res.json();
         setMovie(data);
