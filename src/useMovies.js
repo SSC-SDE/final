@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-const KEY = "f84fc31d";
+//http://www.omdbapi.com/?i=tt3896198&apikey=69c6dd20
+
+const KEY = "69c6dd20";
 
 export function useMovies(query) {
   const [movies, setMovies] = useState([]);
