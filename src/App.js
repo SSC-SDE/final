@@ -480,9 +480,11 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 // }
 
 function WatchedSummary({ watched }) {
+  if(watched){
   const validMovies = watched.filter(movie =>
     movie.imdbRating !== null && movie.userRating !== null && movie.runtime !== null
   );
+
 
   const avgImdbRating = average(validMovies.map((movie) => movie.imdbRating));
   const avgUserRating = average(validMovies.map((movie) => movie.userRating));
@@ -511,6 +513,9 @@ function WatchedSummary({ watched }) {
       </div>
     </div>
   );
+}else{
+  return null;
+}
 }
 
 function average(numbers) {
