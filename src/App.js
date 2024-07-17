@@ -157,7 +157,7 @@ function Logo() {
   return (
     <div className="logo">
       <span role="img">🍿</span>
-      <h1>usePopcorn</h1>
+      <h1>IMDBClone</h1>
     </div>
   );
 }
@@ -383,7 +383,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       document.title = `Movie | ${title}`;
 
       return function () {
-        document.title = "usePopcorn";
+        document.title = "IMDBClone";
         // console.log(`Clean up effect for movie ${title}`);
       };
     },
