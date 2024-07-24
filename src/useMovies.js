@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-//http://www.omdbapi.com/?i=tt3896198&apikey=69c6dd20
+//https://www.omdbapi.com/?i=tt3896198&apikey=69c6dd20
 
 const KEY = "69c6dd20";
 
@@ -19,9 +19,9 @@ export function useMovies(query) {
         try {
           setIsLoading(true);
           setError("");
-          console.log(`http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,"<----- Index");
+          console.log(`https://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,"<----- Index");
           const res = await fetch(
-            `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,
+            `https://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
           );
           
