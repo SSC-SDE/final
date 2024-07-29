@@ -293,11 +293,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   const isWatched = watched ? watched.map((movie) => movie.imdbID).includes(selectedId) : false;
 
-  
-
-  const watchedUserRating = watched.find(
-    (movie) => movie.imdbID === selectedId
-  )?.userRating;
+  const watchedUserRating = watched ? watched.find((movie) => movie.imdbID === selectedId)?.userRating : null;
 
   const {
     Title: title,
