@@ -20,6 +20,7 @@ export default function App() {
   });
 
   function handleSelectMovie(id) {
+    console.log("hANDLEsELECTmOVIE", id);
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
 
@@ -326,17 +327,18 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   // const [avgRating, setAvgRating] = useState(0);
 
   function handleAdd() {
+
     const newWatchedMovie = {
       imdbID: selectedId,
       title,
       year,
       poster,
       imdbRating: Number(imdbRating),
-      runtime: Number(runtime.split(" ").at(0)),
+      // runtime: Number(runtime.split(" ").at(0)),
       userRating,
       countRatingDecisions: countRef.current,
     };
-
+    console.log("On Click Add", newWatchedMovie);
     onAddWatched(newWatchedMovie);
     onCloseMovie();
 
@@ -366,7 +368,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(
-          `https://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&i=${selectedId}`
+          `https://www.omdbapi.com/?i=${selectedId}&apikey=${KEY}`
         );
         const data = await res.json();
         setMovie(data);
