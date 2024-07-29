@@ -28,8 +28,14 @@ export default function App() {
     setSelectedId(null);
   }
 
-  function handleAddWatched(movie) {
-    setWatched((watched) => [...watched, movie]);
+function handleAddWatched(movie) {
+  if (!movie) {
+    console.error('Movie is null or undefined');
+    return;
+  }
+  setWatched((watched) => [...watched, movie]);
+
+
 
     // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
