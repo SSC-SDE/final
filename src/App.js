@@ -531,7 +531,7 @@ function average(numbers) {
 
 function WatchedMoviesList({ watched, onDeleteWatched }) {
   if (!Array.isArray(watched)) {
-    console.error("Expected 'watched' to be an array, but got:", watched);
+    console.log("Expected 'watched' to be an array, but got:", watched);
     return [];
   }
 
