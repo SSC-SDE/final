@@ -14,9 +14,9 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
 
   // const [watched, setWatched] = useState([]);
-  const [watched, setWatched] = useState(function () {
+  const [watched, setWatched] = useState(() => {
     const storedValue = localStorage.getItem("watched");
-    return JSON.parse(storedValue);
+    return storedValue ? JSON.parse(storedValue) : [];
   });
 
   function handleSelectMovie(id) {
@@ -33,12 +33,13 @@ function handleAddWatched(movie) {
     console.error('Movie is null or undefined');
     return;
   }
-  setWatched((watched) => [...watched, movie]);
+  setWatched((watched) => (watched ? [...watched, movie] : [movie]));
 
 
+}
 
     // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
-  }
+ 
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
